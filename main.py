@@ -20,7 +20,7 @@ class package_object(object):
 		self.package_name = re.sub("^/", "", item.attrs['href'])
 		self.description = re.sub("^"+ self.package_name + " ", "", item.find('div').text)
 		if verbose == True: print('Found package: ' + self.package_name)
-		url = 'http://gpo.zugaina.org/' + self.package_name
+		url = 'https://gpo.zugaina.org/' + self.package_name
 		session = requests
 		response = session.get(url)
 		soup = BeautifulSoup(response.text, "html.parser")
@@ -41,7 +41,7 @@ class zugaina_results(object):
 		return top
 
 	def __init__(self, package_name, useflags, verbose, debug=False):
-		self.base_url = 'http://gpo.zugaina.org/Search?search=' + package_name + '&use=' + useflags
+		self.base_url = 'https://gpo.zugaina.org/Search?search=' + package_name + '&use=' + useflags
 		self.verbose = verbose
 		self.session = requests
 		self.response = self.session.get(self.base_url)
